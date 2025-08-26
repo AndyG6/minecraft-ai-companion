@@ -1,0 +1,114 @@
+{
+  "short_term": [
+    {
+      "timestamp": "2025-08-25T23:08:53.372952",
+      "type": "player_chat",
+      "data": "said: \"yo gurt\"",
+      "player": "Player819"
+    },
+    {
+      "timestamp": "2025-08-25T23:09:20.637886",
+      "type": "attack_entity",
+      "data": "entity: entity.minecraft.zombie",
+      "player": "Player819"
+    },
+    {
+      "timestamp": "2025-08-25T23:09:21.973219",
+      "type": "attack_entity",
+      "data": "entity: entity.minecraft.zombie",
+      "player": "Player819"
+    },
+    {
+      "timestamp": "2025-08-25T23:09:25.029217",
+      "type": "attack_entity",
+      "data": "entity: entity.minecraft.cow",
+      "player": "Player819"
+    },
+    {
+      "timestamp": "2025-08-25T23:09:26.925811",
+      "type": "attack_entity",
+      "data": "entity: entity.minecraft.cow",
+      "player": "Player819"
+    },
+    {
+      "timestamp": "2025-08-25T23:09:30.027710",
+      "type": "attack_entity",
+      "data": "entity: entity.minecraft.spider",
+      "player": "Player819"
+    },
+    {
+      "timestamp": "2025-08-25T23:09:31.175261",
+      "type": "attack_entity",
+      "data": "entity: entity.minecraft.spider",
+      "player": "Player819"
+    },
+    {
+      "timestamp": "2025-08-25T23:09:35.629354",
+      "type": "attack_entity",
+      "data": "entity: entity.minecraft.zombie",
+      "player": "Player819"
+    },
+    {
+      "timestamp": "2025-08-25T23:09:36.828964",
+      "type": "attack_entity",
+      "data": "entity: entity.minecraft.zombie",
+      "player": "Player819"
+    },
+    {
+      "timestamp": "2025-08-25T23:09:46.707895",
+      "type": "player_chat",
+      "data": "said: \"im a slayer twin im doing all this to protect you homegirl\"",
+      "player": "Player819"
+    },
+    {
+      "timestamp": "2025-08-25T23:09:58.484682",
+      "type": "block_break",
+      "data": "position: 902, 68, 531, details: Block{minecraft:grass_block}",
+      "player": "Player819"
+    },
+    {
+      "timestamp": "2025-08-25T23:10:01.650356",
+      "type": "player_chat",
+      "data": "said: \"what block did i just mine\"",
+      "player": "Player819"
+    },
+    {
+      "timestamp": "2025-08-25T23:10:14.023119",
+      "type": "attack_entity",
+      "data": "entity: entity.minecraft.skeleton",
+      "player": "Player819"
+    }
+  ],
+  "long_term": {
+    "player_preferences": [],
+    "building_projects": [],
+    "personality_notes": [],
+    "achievements": []
+  },
+  "conversation_history": [
+    {
+      "timestamp": "2025-08-25T23:08:54.809403",
+      "response": "Hmph, \"yo gurt\"? Is that your way of trying to sound cool? You know I\u2019m way more interesting than some yogurt, right? But fine, I guess it\u2019s cute!",
+      "context": "chat: \"yo gurt\"",
+      "player": "Player819"
+    },
+    {
+      "timestamp": "2025-08-25T23:09:47.964568",
+      "response": "Hmph, you think you're so tough, don\u2019t you? Protecting me like some hero! Just don\u2019t get too cocky, okay? I might need to save you one day!",
+      "context": "chat: \"im a slayer twin im doing all this to protect you homegirl\"",
+      "player": "Player819"
+    },
+    {
+      "timestamp": "2025-08-25T23:10:03.268014",
+      "response": "Hmph! You really don't know? It was just a grass block! Not exactly impressive, but I guess even a slayer twin has to start somewhere. Just don't get too cocky, okay?",
+      "context": "chat: \"what block did i just mine\"",
+      "player": "Player819"
+    }
+  ],
+  "last_consolidation": null,
+  "stats": {
+    "total_events": 13,
+    "consolidations_run": 0,
+    "created_at": "2025-08-25T16:03:35.687835"
+  }
+}

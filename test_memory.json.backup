@@ -1,0 +1,29 @@
+{
+  "short_term": [
+    {
+      "timestamp": "2025-08-25T15:49:45.648017",
+      "type": "BlockBreakEvent",
+      "data": "sand",
+      "player": "TestPlayer"
+    },
+    {
+      "timestamp": "2025-08-25T15:49:45.648617",
+      "type": "ItemCraftEvent",
+      "data": "diamond_sword",
+      "player": "TestPlayer"
+    }
+  ],
+  "long_term": {
+    "player_preferences": [],
+    "building_projects": [],
+    "personality_notes": [],
+    "achievements": []
+  },
+  "conversation_history": [],
+  "last_consolidation": null,
+  "stats": {
+    "total_events": 2,
+    "consolidations_run": 0,
+    "created_at": "2025-08-25T15:49:45.647991"
+  }
+}
