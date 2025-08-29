@@ -104,11 +104,12 @@ Transform your Minecraft experience with an AI that actually remembers and learn
 - ![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=flat&logo=python&logoColor=white)
 - ![Minecraft](https://img.shields.io/badge/Minecraft-1.20+-62B47A?style=flat&logo=minecraft&logoColor=white) with Fabric Loader
 - ![OpenAI](https://img.shields.io/badge/OpenAI-API%20Key-412991?style=flat&logo=openai&logoColor=white)
+- Can be configured to use a local open-source LLM (with proper setup) as an alternative to the OpenAI API
 
 **Required Minecraft Mod:**
 This project requires the companion Fabric mod to capture and send game events:
 
-**[minecraft-events-fabric-mod](https://github.com/yourusername/minecraft-events-fabric-mod)** *(Update this link)*
+**[minecraft-events-fabric-mod](https://github.com/AndyG6/ai-event-mod-fabric)** 
 
 ### Installation
 
@@ -199,7 +200,7 @@ To disable text-to-speech, comment out `handle_ai_chat_tts()` calls in the event
 ### 🧠 Two-Tier Architecture
 
 **Short-Term Memory**
-- Stores last 50 events with timestamps
+- Stores last 20 events with timestamps
 - Includes player actions, chat messages, AI responses
 - Automatically pruned for performance
 
