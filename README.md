@@ -3,7 +3,7 @@
 <!-- HEADER STYLE: CLASSIC -->
 <div style="text-align: center;">
 
-# MINDCRAFT-COMPANION
+# MINECRAFT-AI-COMPANION
 
 <em>Adaptive AI Companion for Minecraft with Persistent Memory</em>
 
@@ -47,9 +47,9 @@
 
 ## Overview
 
-MindCraft-Companion is an adaptive AI companion system for Minecraft that learns and remembers your gameplay patterns. Built with a sophisticated two-tier memory architecture, it provides personalized, context-aware responses based on your actions and conversations, creating a truly intelligent in-game companion experience.
+Minecraft-Ai-Companion is an adaptive AI companion system for Minecraft that learns and remembers your gameplay patterns. Built with a sophisticated two-tier memory architecture, it provides personalized, context-aware responses based on your actions and conversations, creating a truly intelligent in-game companion experience.
 
-**Why MindCraft-Companion?**
+**Why Minecraft-Ai-Companion?**
 
 Transform your Minecraft experience with an AI that actually remembers and learns:
 
@@ -115,8 +115,8 @@ This project requires the companion Fabric mod to capture and send game events:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/mindcraft-companion.git
-   cd mindcraft-companion
+   git clone https://github.com/AndyG6/minecraft-ai-companion.git
+   cd mindcraft-ai-companion
    ```
 
 2. **Install dependencies:**
@@ -131,7 +131,7 @@ This project requires the companion Fabric mod to capture and send game events:
    ```
 
 4. **Install the Minecraft mod:**
-   - Download the latest `.jar` file from the [releases page](https://github.com/yourusername/minecraft-events-fabric-mod/releases)
+   - Download the latest `.jar` file from the [releases page](https://github.com/AndyG6/ai-event-mod-fabric/releases)
    - Place it in your Minecraft `mods/` folder
    - Ensure you have Fabric Loader installed
 
@@ -160,7 +160,7 @@ This project requires the companion Fabric mod to capture and send game events:
 ### Memory Settings
 ```python
 # Configurable in ai_memory.py
-SHORT_TERM_LIMIT = 50        # Last N events stored
+SHORT_TERM_LIMIT = 20        # Last N events stored
 CONSOLIDATION_INTERVAL = 15  # Events between AI analysis
 CONTEXT_WINDOW = 5           # Events included per response
 ```
@@ -286,6 +286,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Acknowledgments
 
 - **[@dogecheems329](https://www.tiktok.com/@dogecheems329)** on TikTok for the original concept outline and inspiration that made this project possible
+- **[CKAY-9](https://github.com/CKAY-9)** for helping with project visualization and providing valuable guidance throughout development  
 - OpenAI for providing the GPT-4o Mini API that powers the memory consolidation system
 - The Fabric modding community for excellent tools and documentation
 - All contributors and testers who helped improve this project
