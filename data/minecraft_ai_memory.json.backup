@@ -77,6 +77,12 @@
       "type": "attack_entity",
       "data": "entity: entity.minecraft.skeleton",
       "player": "Player819"
+    },
+    {
+      "timestamp": "2025-08-25T23:10:15.629850",
+      "type": "attack_entity",
+      "data": "entity: entity.minecraft.skeleton",
+      "player": "Player819"
     }
   ],
   "long_term": {
@@ -107,7 +113,7 @@
   ],
   "last_consolidation": null,
   "stats": {
-    "total_events": 13,
+    "total_events": 14,
     "consolidations_run": 0,
     "created_at": "2025-08-25T16:03:35.687835"
   }

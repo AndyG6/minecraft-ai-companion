@@ -27,7 +27,7 @@ class Event(BaseModel):
 
 # Initialize memory system with OpenAI client for consolidation
 memory_system = AIMemorySystem(
-    memory_file="minecraft_ai_memory.json",
+    memory_file="data/minecraft_ai_memory.json",
     openai_client=openai_client
 )
 
@@ -214,13 +214,13 @@ async def force_consolidation():
     success = memory_system.consolidate_memories_with_ai()
     return {"status": "success" if success else "failed"}
 
-@app.post("/memory/clear")
+@app.delete("/memory/clear")
 async def clear_memory(keep_long_term: bool = True):
     """Clear memory data"""
     memory_system.clear_memory(keep_long_term)
     return {"status": "Memory cleared", "long_term_preserved": keep_long_term}
 
-@app.post("/memory/clearall")
+@app.delete("/memory/clearall")
 # completely wipes ai both short and long term memory
 async def clear_memory(keep_long_term: bool = False):
     """Clear memory data"""
