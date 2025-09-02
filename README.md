@@ -3,7 +3,7 @@
 <!-- HEADER STYLE: CLASSIC -->
 <div style="text-align: center;">
 
-# MINDCRAFT-COMPANION
+# MINECRAFT-AI-COMPANION
 
 <em>Adaptive AI Companion for Minecraft with Persistent Memory</em>
 
@@ -47,9 +47,9 @@
 
 ## Overview
 
-MindCraft-Companion is an adaptive AI companion system for Minecraft that learns and remembers your gameplay patterns. Built with a sophisticated two-tier memory architecture, it provides personalized, context-aware responses based on your actions and conversations, creating a truly intelligent in-game companion experience.
+Minecraft-Ai-Companion is an adaptive AI companion system for Minecraft that learns and remembers your gameplay patterns. Built with a sophisticated two-tier memory architecture, it provides personalized, context-aware responses based on your actions and conversations, creating a truly intelligent in-game companion experience.
 
-**Why MindCraft-Companion?**
+**Why Minecraft-Ai-Companion?**
 
 Transform your Minecraft experience with an AI that actually remembers and learns:
 
@@ -104,18 +104,19 @@ Transform your Minecraft experience with an AI that actually remembers and learn
 - ![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=flat&logo=python&logoColor=white)
 - ![Minecraft](https://img.shields.io/badge/Minecraft-1.20+-62B47A?style=flat&logo=minecraft&logoColor=white) with Fabric Loader
 - ![OpenAI](https://img.shields.io/badge/OpenAI-API%20Key-412991?style=flat&logo=openai&logoColor=white)
+- Can be configured to use a local open-source LLM (with proper setup) as an alternative to the OpenAI API
 
 **Required Minecraft Mod:**
 This project requires the companion Fabric mod to capture and send game events:
 
-**[minecraft-events-fabric-mod](https://github.com/yourusername/minecraft-events-fabric-mod)** *(Update this link)*
+**[minecraft-events-fabric-mod](https://github.com/AndyG6/ai-event-mod-fabric)** 
 
 ### Installation
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/mindcraft-companion.git
-   cd mindcraft-companion
+   git clone https://github.com/AndyG6/minecraft-ai-companion.git
+   cd mindcraft-ai-companion
    ```
 
 2. **Install dependencies:**
@@ -130,7 +131,7 @@ This project requires the companion Fabric mod to capture and send game events:
    ```
 
 4. **Install the Minecraft mod:**
-   - Download the latest `.jar` file from the [releases page](https://github.com/yourusername/minecraft-events-fabric-mod/releases)
+   - Download the latest `.jar` file from the [releases page](https://github.com/AndyG6/ai-event-mod-fabric/releases)
    - Place it in your Minecraft `mods/` folder
    - Ensure you have Fabric Loader installed
 
@@ -159,7 +160,7 @@ This project requires the companion Fabric mod to capture and send game events:
 ### Memory Settings
 ```python
 # Configurable in ai_memory.py
-SHORT_TERM_LIMIT = 50        # Last N events stored
+SHORT_TERM_LIMIT = 20        # Last N events stored
 CONSOLIDATION_INTERVAL = 15  # Events between AI analysis
 CONTEXT_WINDOW = 5           # Events included per response
 ```
@@ -199,7 +200,7 @@ To disable text-to-speech, comment out `handle_ai_chat_tts()` calls in the event
 ### 🧠 Two-Tier Architecture
 
 **Short-Term Memory**
-- Stores last 50 events with timestamps
+- Stores last 20 events with timestamps
 - Includes player actions, chat messages, AI responses
 - Automatically pruned for performance
 
@@ -285,6 +286,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Acknowledgments
 
 - **[@dogecheems329](https://www.tiktok.com/@dogecheems329)** on TikTok for the original concept outline and inspiration that made this project possible
+- **[CKAY-9](https://github.com/CKAY-9)** for helping with project visualization and providing valuable guidance throughout development  
 - OpenAI for providing the GPT-4o Mini API that powers the memory consolidation system
 - The Fabric modding community for excellent tools and documentation
 - All contributors and testers who helped improve this project
