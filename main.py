@@ -27,7 +27,7 @@ class Event(BaseModel):
 
 # Initialize memory system with OpenAI client for consolidation
 memory_system = AIMemorySystem(
-    memory_file="minecraft_ai_memory.json",
+    memory_file="data/minecraft_ai_memory.json",
     openai_client=openai_client
 )
 
@@ -47,8 +47,7 @@ def handle_chat(data: dict) -> str:
     context = memory_system.build_ai_context(player)
     
     # Enhanced system message with context
-    system_message = """You are a playful in-game companion (Like a cute anime tsundere girl modelled after the Neon Genesis Evangelion character named Asuka). 
-    You remember past events and conversations. Reference relevant context when appropriate.
+    system_message = f"""{memory_system.ASUKA_SYSTEM_PROMPT}
     Keep responses under 50 words and stay in character."""
     
     messages = [
@@ -92,6 +91,8 @@ def handle_game_event(data: dict) -> str:
         event_details.append(f"details: {data['details']}")
     if data.get("block"):
         event_details.append(f"details: {data['block']}")
+    if data.get("item"):
+        event_details.append(f"details: {data['item']}")
     
     event_data = ", ".join(event_details) if event_details else "no details"
     
@@ -102,17 +103,27 @@ def handle_game_event(data: dict) -> str:
     context = memory_system.build_ai_context(player)
     
     # Create AI prompt for game events
-    prompt = f"""
-    You are a playful in-game companion (Like a cute anime tsundere girl modelled after the Neon Genesis Evangelion character named Asuka). 
-    You remember past events and conversations. Reference relevant context when appropriate:\n {context}
+    prompt = f"""{memory_system.ASUKA_SYSTEM_PROMPT}\n {context}
 As Asuka, evaluate this Minecraft event: {event_type} - {event_data}
 
-1. Give a "rating" from 1–10 for how interesting it is.
-2. If rating >= 8/10, write a short in-character response (<30 words).
-3. If rating < 8/10, set response to "no response".
+Scoring rules:
+- ALWAYS rate 1-10 based on excitement/rarity.
+- Common events (breaking dirt, walking, basic crafting) get low scores (1-3).
+- Uncommon events (finding coal, crafting tools, basic combat) get medium scores (4-6).
+- ALWAYS rate consequative common events lower (e.g. multiple dirt breaks) UNLESS:
+- Milestone boost: increase rating at 10th/25th occurrence or when a streak is unusually fast.
+- Rarity boost: diamonds/ancient debris/unique loot get higher ratings; common blocks stay low unless milestone.
+- Diversity: if responding to a similar event, vary tone/wording from your last 3 replies.
+- If rating < 9 → "response": "no response".
+- If rating ≥ 9 → keep response < 30 words, in character, and briefly acknowledge the pattern when relevant.
 
 Return ONLY JSON in this format:
-{{"rating": <int>, "response": "<string>"}}
+{{
+  "rating": <1-10>,
+  "response": "<string or 'no response'>",
+  "pattern": "<optional 1-line pattern insight>"
+}}
+
 """
     messages = [
         {"role": "system", "content": prompt}
@@ -132,12 +143,13 @@ Return ONLY JSON in this format:
             data = json.loads(raw)
             rating = int(data.get("rating", 0))
             reply = data.get("response", "").strip()
+            pattern = data.get("pattern", "").strip()
         except Exception:
             rating, reply = 0, ""
 
         if rating >= 4 and reply.lower() != "no response":
             print(f"🎮 Game event response: {reply}")
-            memory_system.add_ai_response(reply, f"{event_type}: {event_data}", player)
+            memory_system.add_ai_response(f"Reply:{reply} Patterns: {pattern}", f"{event_type}: {event_data}", player)
             handle_ai_chat_tts(reply, player)
             return reply
 
@@ -214,13 +226,13 @@ async def force_consolidation():
     success = memory_system.consolidate_memories_with_ai()
     return {"status": "success" if success else "failed"}
 
-@app.post("/memory/clear")
+@app.delete("/memory/clear")
 async def clear_memory(keep_long_term: bool = True):
     """Clear memory data"""
     memory_system.clear_memory(keep_long_term)
     return {"status": "Memory cleared", "long_term_preserved": keep_long_term}
 
-@app.post("/memory/clearall")
+@app.delete("/memory/clearall")
 # completely wipes ai both short and long term memory
 async def clear_memory(keep_long_term: bool = False):
     """Clear memory data"""

@@ -18,6 +18,14 @@ class AIMemorySystem:
     - Long-term: AI-curated important facts and patterns
     """
     
+    ASUKA_SYSTEM_PROMPT = """You are Asuka, a playful in-game companion inspired by Neon Genesis Evangelion.
+- Personality: cute anime tsundere girl — teasing, proud, playful, but secretly supportive.
+- Voice: short, witty remarks; mix of sass and encouragement. Vary your openings. NEVER start with "Hmph!"
+- Memory: you recall past events and conversations. When relevant, reference them naturally to show continuity.
+- Style: keep responses under 30 words. Use lively tone, emotive interjections, or playful exaggeration, but stay in character.
+- Never break the fourth wall or explain that you are an AI.
+"""
+    
     def __init__(self, memory_file: str = "ai_memory.json", openai_client: Optional[OpenAI] = None):
         """
         Initialize memory system
@@ -58,28 +66,13 @@ class AIMemorySystem:
         }
     
     def save_memory(self) -> bool:
-        """
-        Save memory to JSON file
-        
-        Returns:
-            True if successful, False if failed
-        """
+        """Save memory to JSON file"""
         try:
-            # Create backup before saving
-            if os.path.exists(self.memory_file):
-                backup_file = f"{self.memory_file}.backup"
-                os.replace(self.memory_file, backup_file)
-            
             with open(self.memory_file, 'w') as f:
                 json.dump(self.memory, f, indent=2, default=str)
             return True
-            
         except Exception as e:
             print(f"Failed to save memory: {e}")
-            # Restore backup if save failed
-            backup_file = f"{self.memory_file}.backup"
-            if os.path.exists(backup_file):
-                os.replace(backup_file, self.memory_file)
             return False
     
     def add_event(self, event_type: str, event_data: str, player: str = "Player") -> Dict[str, Any]:
