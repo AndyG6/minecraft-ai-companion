@@ -1,12 +1,15 @@
 # main.py - Updated FastAPI server using dedicated memory class
 import json
-import pyttsx3
+import os
 import threading
 from dotenv import load_dotenv
 from fastapi import FastAPI, Request
 from pydantic import BaseModel
 from typing import Optional, Dict
 from openai import OpenAI
+from elevenlabs.client import ElevenLabs
+from elevenlabs import play
+from io import BytesIO
 
 # Import our dedicated memory system
 from ai_memory import AIMemorySystem
@@ -14,6 +17,16 @@ from ai_memory import AIMemorySystem
 load_dotenv()  # Load environment variables from .env file
 
 openai_client = OpenAI()
+elevenlabs = ElevenLabs(
+  api_key=os.getenv("ELEVENLABS_API_KEY"),
+)
+
+# voice = elevenlabs.voices.ivc.create(
+#     name="My Voice Clone",
+#     # Replace with the paths to your audio files.
+#     # The more files you add, the better the clone will be.
+#     files=[BytesIO(open("/path/to/your/audio/file.mp3", "rb").read())]
+# )
 
 # Initialize FastAPI app
 app = FastAPI()
@@ -161,24 +174,22 @@ Return ONLY JSON in this format:
         return ""
     
 def handle_ai_chat_tts(ai_response: str, player: str = "Player"):
-    """Start TTS in background thread"""
     if not ai_response or ai_response.lower() == "no response":
         return 
     
     def speak_in_background():
         try:
-            engine = pyttsx3.init()
-            engine.say(ai_response)
-            engine.runAndWait()
-            engine.stop()
+            audio_stream = elevenlabs.text_to_speech.convert(
+                text=ai_response,
+                voice_id="Xb7hH8MSUJpSbSDYk0k2",
+                model_id="eleven_turbo_v2"
+            )
+            play(audio_stream)  # Starts playing immediately
         except Exception as e:
             print(f"TTS error: {e}")
     
-    # Create and start new thread - doesn't block
     tts_thread = threading.Thread(target=speak_in_background, daemon=True)
     tts_thread.start()
-    # Function returns immediately, HTTP response sent
-    # TTS plays separately in background thread
 
 @app.post("/event")
 async def ingest(request: Request):

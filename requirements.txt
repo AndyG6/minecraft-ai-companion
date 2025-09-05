@@ -1,10 +1,6 @@
+elevenlabs==2.14.0
 fastapi==0.116.1
-openai==1.102.0
+openai==1.106.1
 pydantic==2.11.7
 python-dotenv==1.1.1
-pyttsx3==2.99
-<<<<<<< HEAD
 uvicorn==0.35.0
-=======
-uvicorn==0.35.0
->>>>>>> 61dee12a7ba57b980c22fec42c1bbbbd63e93712
